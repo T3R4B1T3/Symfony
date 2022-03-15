@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BlogCategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,16 @@ class BlogCategory
      * @ORM\Column(type="text")
      */
     private $created_by;
+
+    /**
+     * @ORM\OneToMany(targetEntity=BlogArticle::class, mappedBy="categorry")
+     */
+    private $categories;
+
+    public function __construct()
+    {
+        $this->categories = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +98,36 @@ class BlogCategory
     public function setCreatedBy(string $created_by): self
     {
         $this->created_by = $created_by;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BlogArticle>
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(BlogArticle $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(BlogArticle $category): self
+    {
+        if ($this->categories->removeElement($category)) {
+            // set the owning side to null (unless already changed)
+            if ($category->getCategory() === $this) {
+                $category->setCategory(null);
+            }
+        }
 
         return $this;
     }

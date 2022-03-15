@@ -42,6 +42,12 @@ class BlogArticle
      */
     private $created_by;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=BlogCategory::class, inversedBy="categories")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +109,18 @@ class BlogArticle
     public function setCreatedBy(string $created_by): self
     {
         $this->created_by = $created_by;
+
+        return $this;
+    }
+
+    public function getCategory(): ?BlogCategory
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?BlogCategory $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
