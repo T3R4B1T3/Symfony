@@ -1,0 +1,26 @@
+<h1>Articles: </h1>
+<a href="formA" style="border: none"><p>Add new Article</p></a>
+<table style="border-collapse: collapse">
+
+    {% for articles in articles %}
+        <tr style="text-align: left">
+            <th style="border: 2px solid ">Title</th>
+            <th style="border: 2px solid ">Description</th>
+            <th style="border: 2px solid ">Article</th>
+            <th style="border: 2px solid ">Created_AT</th>
+            <th style="border: 2px solid ">Created_By</th>
+            <th style="border: 2px solid ">Category_Id</th>
+        </tr>
+        <tr style="text-align: center">
+
+            <td style="border: 2px solid ">{{ articles.title}}</td>
+            <td style="border: 2px solid ">{{ articles.descritpion}}</td>
+            <td style="border: 2px solid ">{{ articles.article}}</td>
+            <td style="border: 2px solid ">{{ articles.CreatedAt | date('d/m/Y H:i:s' )}}</td>
+            <td style="border: 2px solid ">{{ articles.CreatedBy}}</td>
+            <td style="border: 2px solid ">{{ articles.category}}</td>
+
+        </tr>
+
+    {% endfor%}
+</table>
