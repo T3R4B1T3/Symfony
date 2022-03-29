@@ -1,15 +1,12 @@
-<html lang="pl">
-    <head>
-        <title>Blog</title>
-    </head>
-
-    <body>
-        <p>Blog index</p>
-        <div>
-                <li><a href = "/" title = "Index">HomePage</a> </li>
-                <li><a href = "Blog/list" title = "lista">Lista</a> </li>
-                <li><a href = "Blog/login" title = "login">Login</a> </li>
-                <li><a href = "Blog/about" title = "About">About</a> </li>
-        </div>
-    </body>
-</html>
+{% extends "Blog/layout.html.twig"%}
+{% block head %}
+    <h1> Welcome to my Blog!</h1>
+{% endblock %}
+{% block body %}
+            <ul>
+                <li><a href="/">Home Page</a></li>
+                <li><a href="Blog/list">List</a></li>
+                <li><a href="Blog/login">Login</a></li>
+                <li><a href="Blog/about">About</a></li>
+            </ul>
+{% endblock %}

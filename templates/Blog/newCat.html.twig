@@ -1,5 +1,9 @@
+{% extends "Blog/layout.html.twig" %}
+{% block head %}
 <h1>Add new Category!</h1>
+{% endblock %}
 
+{% block body %}
 {{ form_start(catForm) }}
 {{ form_row(catForm.name,{'label':' Name: '}) }}
 <br>
@@ -12,4 +16,4 @@
 {{ form_row(catForm.save) }}
 {{ form_end(catForm) }}
 
-<a href="/" >Go back! <a/>
+{% endblock %}

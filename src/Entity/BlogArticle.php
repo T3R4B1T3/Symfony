@@ -34,7 +34,7 @@ class BlogArticle
     private $article;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime")
      */
     private $created_at;
 

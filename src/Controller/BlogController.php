@@ -3,10 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\BlogCategory;
-use Doctrine\DBAL\Types\DateTimeType;
-use Doctrine\DBAL\Types\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Doctrine\Persistence\ManagerRegistry;
 use phpDocumentor\Reflection\Types\Integer;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -18,11 +18,12 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class BlogController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/", name="homepage")
      */
 
     public function index(): Response
@@ -81,7 +82,7 @@ class BlogController extends AbstractController
         $form = $this->createFormBuilder($category)
             ->add('name', TextType::class)
             ->add('description', TextType::class)
-            ->add('created_at', DateType::class)
+            ->add('created_at', DateTimeType::class)
             ->add('created_by', TextType::class)
             ->add('save', SubmitType::class, ['label' => 'Create Category!'])
             ->getForm();
@@ -93,11 +94,16 @@ class BlogController extends AbstractController
             $manager = $doctrine->getManager();
             $manager->persist($category);
             $manager->flush();
+            $this->addFlash(
+                'warning',
+                'Category added successfully'
+            );
+            return $this->redirectToRoute('homepage');
 
-            echo "dodano pomyslnie";
         }
         return $this->renderForm('Blog/newCat.html.twig', [
             'catForm' => $form,
+
         ]);
 
     }
@@ -112,9 +118,11 @@ class BlogController extends AbstractController
             ->add('title', TextType::class)
             ->add('descritpion', TextType::class)
             ->add('article', TextareaType::class)
-            ->add('created_at', DateType::class)
+            ->add('created_at', DateTimeType::class)
             ->add('created_by', TextType::class)
-            ->add('category', BlogCategory::class)
+            ->add('category', EntityType::class, [
+                'class' => BlogCategory::class,
+                'choice_label' => 'name',])
             ->add('save', SubmitType::class, ['label' => 'Create Article!'])
             ->getForm();
 
@@ -125,8 +133,11 @@ class BlogController extends AbstractController
             $manager = $doctrine->getManager();
             $manager->persist($article);
             $manager->flush();
-
-            echo "dodano pomyslnie";
+            $this->addFlash(
+                'warning',
+                'Article added successfully'
+            );
+            return $this->redirectToRoute('homepage');
         }
         return $this->renderForm('Blog/newArt.html.twig', [
             'artForm' => $form,

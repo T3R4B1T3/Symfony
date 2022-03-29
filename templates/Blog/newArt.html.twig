@@ -1,5 +1,10 @@
-<h1>Add new Article!</h1>
+{% extends "Blog/layout.html.twig" %}
 
+{% block head %}
+<h1>Add new Article!</h1>
+{% endblock %}
+
+{% block body %}
 {{ form_start(artForm) }}
 {{ form_row(artForm.title,{'label':' Title: '}) }}
 <br>
@@ -11,9 +16,8 @@
 <br>
 {{ form_row(artForm.created_by,{'label':' Created_by: '}) }}
 <br>
-{{ form_row(artForm.category,{'label':' Category_Id: '}) }}
+{{ form_row(artForm.category,{'label':' Category: '}) }}
 <br>
 {{ form_row(artForm.save) }}
 {{ form_end(artForm) }}
-
-<a href="/">Go back!</a>
+{% endblock %}
