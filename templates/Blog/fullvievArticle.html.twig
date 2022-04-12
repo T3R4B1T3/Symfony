@@ -1,0 +1,32 @@
+{% extends "Blog/layout.html.twig"%}
+{% block head %}
+    <h1> Welcome to Article full viev!</h1>
+{% endblock %}
+{% block body %}
+    <table style="border-collapse: collapse">
+    {% for fullviev in fullview %}
+        <tr style="text-align: left">
+            <th style="border: 2px solid ">Title</th>
+            <th style="border: 2px solid ">Description</th>
+            <th style="border: 2px solid ">Article</th>
+            <th style="border: 2px solid ">Created_AT</th>
+            <th style="border: 2px solid ">Created_By</th>
+            <th style="border: 2px solid ">Category</th>
+        </tr>
+        <tr style="text-align: center">
+
+            <td style="border: 2px solid ">{{ fullviev.title}}</td>
+            <td style="border: 2px solid ">{{ fullviev.descritpion}}</td>
+            <td style="border: 2px solid ">{{ fullviev.article}}</td>
+            <td style="border: 2px solid ">{{ fullviev.CreatedAt | date('d/m/Y H:i' )}}</td>
+            <td style="border: 2px solid ">{{ fullviev.CreatedBy}}</td>
+            <td style="border: 2px solid ">{{ fullviev.category.name}}</td>
+        </tr>
+
+    {% endfor%}
+</table>
+{% endblock %}
+{% block footer %}
+    <li><a href = "Articles" title = "Home Page">GoBack!</a> </li>
+    <p>Stopka</p>
+{% endblock %}

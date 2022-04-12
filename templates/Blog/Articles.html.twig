@@ -7,9 +7,10 @@
 
 {% block body %}
 <table style="border-collapse: collapse">
-
+    {% set myVal = 3 %}
     {% for article in articles %}
         <tr style="text-align: left">
+            <th style="border: 2px solid ">Id</th>
             <th style="border: 2px solid ">Title</th>
             <th style="border: 2px solid ">Description</th>
             <th style="border: 2px solid ">Article</th>
@@ -19,15 +20,16 @@
         </tr>
         <tr style="text-align: center">
 
+            <td style="border: 2px solid "> <a href="/Blog/fullview">{{ article.id}}</a></td>
             <td style="border: 2px solid ">{{ article.title}}</td>
             <td style="border: 2px solid ">{{ article.descritpion}}</td>
             <td style="border: 2px solid ">{{ article.article}}</td>
             <td style="border: 2px solid ">{{ article.CreatedAt | date('d/m/Y H:i' )}}</td>
             <td style="border: 2px solid ">{{ article.CreatedBy}}</td>
             <td style="border: 2px solid ">{{ article.category.name}}</td>
-
+            <td><a href="/Blog/fullview"><input type="button" name="fullview" value="fullviev" id={{ myVal }}></a></td>
         </tr>
-
+        {% set myVal = myVal + 1 %}
     {% endfor%}
 </table>
 {% endblock %}

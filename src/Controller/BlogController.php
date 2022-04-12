@@ -38,13 +38,7 @@ class BlogController extends AbstractController
     {
         return $this->render('Blog/list.html.twig', []);
     }
-    /**
-     * @Route("/Blog/login")
-     */
-    public function login(): Response
-    {
-        return $this->render('Blog/login.html.twig', []);
-    }
+
     /**
      * @Route("/Blog/about")
      */
@@ -59,7 +53,6 @@ class BlogController extends AbstractController
     {
         $repository = $doctrine->getRepository(BlogArticle::class);
         $blogArticles = $repository->findAll();
-
         return $this->render('Blog/Articles.html.twig', ['articles' => $blogArticles]);
     }
     /**
@@ -143,6 +136,16 @@ class BlogController extends AbstractController
             'artForm' => $form,
         ]);
 
+    }
+    /**
+     * @Route("/Blog/fullview")
+     */
+    public function fullviev(ManagerRegistry $doctrine):Response
+    {
+        $repository = $doctrine->getRepository(BlogArticle::class);
+        $fullview = $repository->findAll();
+
+        return $this->render('Blog/fullvievArticle.html.twig', ['fullview' => $fullview]);
     }
 
 }
