@@ -5,3 +5,7 @@
 #number:
 #  path: /number
 #  controller: App\Controller\LuckyController::number
+
+app_logout:
+  path: /logout
+  methods: GET

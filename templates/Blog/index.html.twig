@@ -6,7 +6,10 @@
             <ul>
                 <li><a href="/">Home Page</a></li>
                 <li><a href="Blog/list">List</a></li>
-                <li><a href="Blog/login">Login</a></li>
-                <li><a href="Blog/about">About</a></li>
+                <li><a href="/register">Registration</a></li>
+                <li><a href="/login">Login</a></li>
+                {% if is_granted('ROLE_USER') %}
+                <li><a href="/logout">Logout</a></li>
+                {% endif %}
             </ul>
 {% endblock %}
