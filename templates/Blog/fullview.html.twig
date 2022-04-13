@@ -1,0 +1,17 @@
+{% extends "Blog/layout.html.twig" %}
+{% block head %}
+    <p>Welcome to fullview of choosen article!</p>
+{% endblock %}
+
+{% block body %}
+        {% for article in articles %}
+            <h1 style="text-align: center">{{ article.title }}</h1>
+            <div style="text-align: center">
+                 <p>{{ article.descritpion }}</p>
+                 <p>{{ article.article }}</p>
+                 <p>{{ article.CreatedAt | date('d/m/Y H:i' )}}</p>
+                 <p>{{ article.CreatedBy }}</p>
+                 <p>{{ article.category.name }}</p>
+            </div>
+        {% endfor%}
+{% endblock %}

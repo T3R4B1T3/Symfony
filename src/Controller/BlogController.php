@@ -73,6 +73,30 @@ class BlogController extends AbstractController
         return $this->render('Blog/Categories.html.twig', ['categories' => $blogCategories]);
     }
     /**
+     * @Route("/Blog/fullview/{id}", name="fullview")
+     */
+    public function fullview(ManagerRegistry $doctrine,$id):Response
+    {
+        $repository = $doctrine->getRepository(BlogArticle::class);
+        $blogArticles = $repository->findBy(['id'=>$id]);
+
+
+        return $this->render('Blog/fullview.html.twig', ['articles' => $blogArticles]);
+    }
+    /**
+     * @Route("/Blog/fullviewC/{id}", name="fullviewC")
+     */
+    public function fullviewC(ManagerRegistry $doctrine,$id):Response
+    {
+        $repository = $doctrine->getRepository(BlogArticle::class);
+        $blogArticles = $repository->findBy(['category'=>$id]);
+
+
+
+
+        return $this->render('Blog/fullview.html.twig', ['articles' => $blogArticles]);
+    }
+    /**
      * @Route("/Blog/formC")
    */
     public function newCategory(Request $request, ManagerRegistry $doctrine): Response

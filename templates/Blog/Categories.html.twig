@@ -19,7 +19,7 @@
              <td style="border: 2px solid ">{{ category.description}}</td>
              <td style="border: 2px solid ">{{ category.CreatedAt | date('d/m/Y H:i' )}}</td>
              <td style="border: 2px solid ">{{ category.CreatedBy}}</td>
-
+              <td><a href ="{{ path('fullviewC',{id: category.id}) }}"><input type="submit" value="Show Aricles"> </a></td>
           </tr>
 
     {% endfor%}

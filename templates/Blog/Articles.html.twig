@@ -11,6 +11,7 @@
 
     {% for article in articles %}
         <tr style="text-align: left">
+            <th style="border: 2px solid ">Id</th>
             <th style="border: 2px solid ">Title</th>
             <th style="border: 2px solid ">Description</th>
             <th style="border: 2px solid ">Article</th>
@@ -19,16 +20,16 @@
             <th style="border: 2px solid ">Category</th>
         </tr>
         <tr style="text-align: center">
-
+            <td style="border: 2px solid ">{{ article.id}}</td>
             <td style="border: 2px solid ">{{ article.title}}</td>
             <td style="border: 2px solid ">{{ article.descritpion}}</td>
             <td style="border: 2px solid ">{{ article.article}}</td>
             <td style="border: 2px solid ">{{ article.CreatedAt | date('d/m/Y H:i' )}}</td>
             <td style="border: 2px solid ">{{ article.CreatedBy}}</td>
             <td style="border: 2px solid ">{{ article.category.name}}</td>
+            <td><a href ="{{ path('fullview',{id: article.id}) }}"><input type="submit" value="fullview"> </a></td>
 
         </tr>
-
     {% endfor%}
 </table>
 {% endblock %}
