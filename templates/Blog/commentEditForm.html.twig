@@ -1,0 +1,15 @@
+{% extends "Blog/layout.html.twig" %}
+{% block head %}
+    <p>Welcome to edition of choosen comment!</p>
+{% endblock %}
+
+{% block body %}
+    <p>Edit comment: </p>
+    {{ form_start(commEditForm) }}
+
+    {{ form_row(commEditForm.text,{'label':' Text: ','placeholder': Text}) }}
+    <br>
+    {{ form_row(commEditForm.save) }}
+    <br>
+    {{ form_end(commEditForm)}}
+{% endblock %}

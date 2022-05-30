@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BlogArticleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Integer;
 
@@ -48,6 +50,20 @@ class BlogArticle
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="Article", orphanRemoval=true)
+     */
+    private $artcileComment;
+
+
+
+    public function __construct()
+    {
+        $this->comment = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+        $this->artcileComment = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -125,4 +141,35 @@ class BlogArticle
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getArtcileComment(): Collection
+    {
+        return $this->artcileComment;
+    }
+
+    public function addArtcileComment(Comment $artcileComment): self
+    {
+        if (!$this->artcileComment->contains($artcileComment)) {
+            $this->artcileComment[] = $artcileComment;
+            $artcileComment->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArtcileComment(Comment $artcileComment): self
+    {
+        if ($this->artcileComment->removeElement($artcileComment)) {
+            // set the owning side to null (unless already changed)
+            if ($artcileComment->getArticle() === $this) {
+                $artcileComment->setArticle(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

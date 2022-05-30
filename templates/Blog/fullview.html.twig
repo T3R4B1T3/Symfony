@@ -9,9 +9,37 @@
             <div style="text-align: center">
                  <p>{{ article.descritpion }}</p>
                  <p>{{ article.article }}</p>
-                 <p>{{ article.CreatedAt | date('d/m/Y H:i' )}}</p>
+                 <p>{{ article.CreatedAt | date('Y-m-d H:i:s' )}}</p>
                  <p>{{ article.CreatedBy }}</p>
                  <p>{{ article.category.name }}</p>
             </div>
         {% endfor%}
+    {%if is_granted("ROLE_USER") %}
+    <p>Add new comment: </p>
+    {{ form_start(comForm) }}
+    {{ form_row(comForm.text,{'label':' Text: '}) }}
+    <br>
+    {{ form_row(comForm.save) }}
+    <br>
+    {{ form_end(comForm)}}
+    {% endif %}
+<p>Comments: </p>
+    <table style="border-collapse: collapse">
+        {% for comment in comm %}
+            <tr style="text-align: left">
+                <th style="border: 2px solid ">Text</th>
+                <th style="border: 2px solid ">Created_AT</th>
+                <th style="border: 2px solid ">Created_By</th>
+            </tr>
+            <tr style="text-align: center">
+                <td style="border: 2px solid ">{{ comment.text}}</td>
+                <td style="border: 2px solid ">{{ comment.CreatedAt |date('Y-m-d H:i:s' )}}</td>
+                <td style="border: 2px solid ">{{ comment.User.username}}</td>
+                {%if is_granted("ROLE_USER") %}
+                <td><a href ="{{ path('edit_comment',{id: comment.id, username: comment.User.username,currentuser: app.user.username}) }}"><input type="submit" value="edycja"> </a></td>
+                <td><a href ="{{ path('delete_comment',{id: comment.id, username: comment.User.username,currentuser: app.user.username}) }}"><input type="submit" value="delete"> </a></td>
+                {% endif %}
+            </tr>
+        {% endfor%}
+    </table>
 {% endblock %}
