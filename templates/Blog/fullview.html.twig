@@ -16,16 +16,16 @@
         {% endfor%}
     {%if is_granted("ROLE_USER") %}
     <p>Add new comment: </p>
-    {{ form_start(comForm) }}
-    {{ form_row(comForm.text,{'label':' Text: '}) }}
+    {{ form_start(commentForm) }}
+    {{ form_row(commentForm.text,{'label':' Text: '}) }}
     <br>
-    {{ form_row(comForm.save) }}
+    {{ form_row(commentForm.save) }}
     <br>
-    {{ form_end(comForm)}}
+    {{ form_end(commentForm)}}
     {% endif %}
 <p>Comments: </p>
     <table style="border-collapse: collapse">
-        {% for comment in comm %}
+        {% for comment in commentView %}
             <tr style="text-align: left">
                 <th style="border: 2px solid ">Text</th>
                 <th style="border: 2px solid ">Created_AT</th>

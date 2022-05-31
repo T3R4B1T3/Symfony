@@ -97,10 +97,10 @@ class BlogController extends AbstractController
     {
         $repository = $doctrine->getRepository(BlogArticle::class);
         $blogArticles = $repository->findBy(['id' => $id]);
-        $blogArticlesO = $repository->findOneBy(['id' => $id]);
+        $blogArticlesOne = $repository->findOneBy(['id' => $id]);
         $comment = new Comment();
-        $repositoryC = $doctrine->getRepository(Comment::class);
-        $comments = $repositoryC->findBy(['Article' => $id]);
+        $repositoryComment = $doctrine->getRepository(Comment::class);
+        $comments = $repositoryComment->findBy(['Article' => $id]);
 
         $form = $this->createFormBuilder($comment)
             ->add('text', TextType::class)
@@ -109,7 +109,7 @@ class BlogController extends AbstractController
 
         $comment->setUser($this->getUser());
         $comment->setCreatedAt(new DateTimeImmutable());
-        $comment->setArticle($blogArticlesO);
+        $comment->setArticle($blogArticlesOne);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -124,9 +124,9 @@ class BlogController extends AbstractController
             return $this->redirectToRoute("Articles");
         }
         return $this->renderForm('Blog/fullview.html.twig', [
-            'comForm' => $form,
+            'commentForm' => $form,
             'articles' => $blogArticles,
-            'comm' => $comments,
+            'commentView' => $comments,
         ]);
     }
 

@@ -33,7 +33,7 @@ CREATE TABLE `blog_article` (
   PRIMARY KEY (`id`),
   KEY `IDX_EECCB3E512469DE2` (`category_id`),
   CONSTRAINT `FK_EECCB3E512469DE2` FOREIGN KEY (`category_id`) REFERENCES `blog_category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `blog_article` (
 
 LOCK TABLES `blog_article` WRITE;
 /*!40000 ALTER TABLE `blog_article` DISABLE KEYS */;
-INSERT INTO `blog_article` VALUES (7,'Berek','Zabawa w berka','Berek lub ganiany, goniany – dziecięca gra ruchowa, polegająca na tym, że jedna osoba (nazywana berkiem) musi dotknąć dowolną z pozostałych osób biorących udział w zabawie. Dotknięta osoba staje się berkiem, a poprzedni berek staje się zwykłym uczestnikiem zabawy. W grze może brać udział dowolna liczba osób. Kiedy jest dużo uczestników, mogą być dwa berki. Zabawa nie jest ograniczona w czasie, jednak zazwyczaj kończy się, gdy większość uczestników poczuje się zmęczona.\r\n\r\nKlasyczną odmianą berka jest berek ganiany (sama gra może być tak również nazywana). Można również ułatwić grę uciekającym. Popularną odmianą jest berek kucany. Gracz może kucnąć i wtedy jest bezpieczny, nie może zostać berkiem. Istnieje też odmiana, która poprzez ułatwienie uciekającemu gry wymaga dotknięcia odpowiedniego surowca (np. żelaza, drewna, szkła). W klasycznym berku można również wyznaczyć konkretną bazę. Jeżeli gracze chcą, mogą ograniczyć grę czasowo i wtedy gra będzie bardziej rywalizacyjna niż towarzyska.\r\n\r\nIstnieje też gra zwana „zamrożonym berkiem” polega na tym, że osoba złapana przez berka staje w rozkroku i nie może się ruszyć dopóki inna z osób nie przejdzie jej pod nogami. Jeżeli berkowi uda się złapać (zamrozić) wszystkich – wygrywa.','2022-05-30 18:58:05','Michał',28);
+INSERT INTO `blog_article` VALUES (7,'Berek','Zabawa w berka','Berek lub ganiany, goniany – dziecięca gra ruchowa, polegająca na tym, że jedna osoba (nazywana berkiem) musi dotknąć dowolną z pozostałych osób biorących udział w zabawie. Dotknięta osoba staje się berkiem, a poprzedni berek staje się zwykłym uczestnikiem zabawy. W grze może brać udział dowolna liczba osób. Kiedy jest dużo uczestników, mogą być dwa berki. Zabawa nie jest ograniczona w czasie, jednak zazwyczaj kończy się, gdy większość uczestników poczuje się zmęczona.\r\n\r\nKlasyczną odmianą berka jest berek ganiany (sama gra może być tak również nazywana). Można również ułatwić grę uciekającym. Popularną odmianą jest berek kucany. Gracz może kucnąć i wtedy jest bezpieczny, nie może zostać berkiem. Istnieje też odmiana, która poprzez ułatwienie uciekającemu gry wymaga dotknięcia odpowiedniego surowca (np. żelaza, drewna, szkła). W klasycznym berku można również wyznaczyć konkretną bazę. Jeżeli gracze chcą, mogą ograniczyć grę czasowo i wtedy gra będzie bardziej rywalizacyjna niż towarzyska.\r\n\r\nIstnieje też gra zwana „zamrożonym berkiem” polega na tym, że osoba złapana przez berka staje w rozkroku i nie może się ruszyć dopóki inna z osób nie przejdzie jej pod nogami. Jeżeli berkowi uda się złapać (zamrozić) wszystkich – wygrywa.','2022-05-30 18:58:05','Michał',28),(8,'Trofeum trafia do Madrytu','Real madryt zwyciescą finału ligi mistrzów','Królewscy zrobili to w stylu, jaki widzieliśmy już w tym sezonie. Nie było co prawda tylu bramek i takiej dramaturgii, co w meczach z Paris Saint-Germain, Chelsea i Manchesterem City, o triumfie Królewskich zadecydował jeden gol strzelony przez Viniciusa Juniora, ale scenariusz był podobny. Real wyglądał jak przyczajony tygrys, dał się wyszaleć rywalowi, uśpił jego czujność i w odpowiednim momencie zaatakował.','2022-05-31 12:52:46','Marek',29);
 /*!40000 ALTER TABLE `blog_article` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -60,7 +60,7 @@ CREATE TABLE `blog_category` (
   `created_at` datetime NOT NULL,
   `created_by` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +69,7 @@ CREATE TABLE `blog_category` (
 
 LOCK TABLES `blog_category` WRITE;
 /*!40000 ALTER TABLE `blog_category` DISABLE KEYS */;
-INSERT INTO `blog_category` VALUES (28,'Hobby','Coa lubisz robic w wolnym czasie','2022-05-30 18:57:30','Michał');
+INSERT INTO `blog_category` VALUES (28,'Hobby','Coa lubisz robic w wolnym czasie','2022-05-30 18:57:30','Michał'),(29,'Sport','Liga mistrzów','2022-05-31 12:51:15','Marek');
 /*!40000 ALTER TABLE `blog_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -91,7 +91,7 @@ CREATE TABLE `comment` (
   KEY `IDX_9474526C7294869C` (`article_id`),
   CONSTRAINT `FK_9474526C7294869C` FOREIGN KEY (`article_id`) REFERENCES `blog_article` (`id`),
   CONSTRAINT `FK_9474526CA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,7 +100,7 @@ CREATE TABLE `comment` (
 
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-INSERT INTO `comment` VALUES (47,1,7,'Fajny ten berek','2022-05-30 18:58:17'),(48,5,7,'To prawda całkiem nie zły','2022-05-30 18:58:40');
+INSERT INTO `comment` VALUES (47,1,7,'Fajny ten berek','2022-05-30 18:58:17'),(48,5,7,'To prawda całkiem nie zły','2022-05-30 18:58:40'),(49,3,7,'Chowany i tak lepszy -__-','2022-05-31 12:50:20'),(50,1,8,'Dobrze idzie chłopaką w tym sezonie','2022-05-31 12:53:10'),(51,5,8,'Wszystko farcą zero umiejętności','2022-05-31 12:58:34');
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -194,4 +194,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-30 19:07:04
+-- Dump completed on 2022-05-31 13:00:07
